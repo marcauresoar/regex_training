@@ -1,0 +1,482 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Generic - Editorial by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a class="logo"><strong>Pattern Matching</strong></a>
+								</header>
+
+
+								<section>
+
+									<h2 id="simple_pattern_matching">Simple Pattern Matching</h2>
+									<p>A regular expression is a description of a pattern of characters. The first thing to recognize when using regular expressions is that everything is essentially a character, and we are writing patterns to match a specific sequence of characters. Basically, regular expressions work just like a regular search, but it holds some additional features to manipulate patterns of characters.</p>
+									<p>We can start trying to find a simple word inside a sentense, as the example below:</p>
+
+									<h4>Regex:</h4>
+									<p><code class="regex">cars</code></p>
+
+									<h4>Matches:</h4>
+									<div class="box">
+										Apple has been granted a permit to test self-driving <span class="highlighted">cars</span> on the streets of California.
+									</div>
+
+									<p>In the example above, we created a simple pattern that matches the word "cars" inside a sentence. The regex engine went through the sentense, character by character, trying to find the sequence of characters that was specified in the regular expression. When it successfully finds a match, the engine returns it.</p>
+
+									<p><b>Note:</b> If we want to find more than one occurrence inside the text, we could use the <code class="regex">g</code> flag in our regular expression, as shown in example below: </p>
+
+									<h4>Regex:</h4>
+									<p><code class="regex">/the/g</code></p>
+
+									<h4>Matches:</h4>
+									<div class="box">
+										But we hear a ra<span class="highlighted">the</span>r different message from <span class="highlighted">the</span> founder of TransferWise, probably <span class="highlighted">the</span> most successful fintech firm to be born in <span class="highlighted">the</span> UK. 
+									</div>
+
+									<p>In this example, we added two slashes (<code class="regex">/</code>) surrounding the whole expression to tell the engine that we want to use a flag. And then, in the end of the regular expression we added our g flag. As a result, we obtained four occurrences of the word "the".</p>
+									<p>The g flag stands for "Global", which means that the regex engine is not going to stop on the first match. It is going to continue looking globally.</p>
+									<p>There is a list of the most common flags that could be used within our regular expressions, see the table below: </p>
+
+									<div class="table-wrapper">
+										<table class="alt">
+											<thead>
+												<tr>
+													<th>Flag</th>
+													<th>Description</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>g</td>
+													<td>Global. It doesn't return after the first match. Instead, it keeps looking globally until it finds all occurrences possible.</td>
+												</tr>
+												<tr>
+													<td>m</td>
+													<td>Multi line. The regex engine treats the string as a multi line text, so the ^ and $ delimiters can be used.</td>
+												</tr>
+												<tr>
+													<td>i</td>
+													<td>Insensitive. Basically, this option ignore cases. Matches lowercase and uppercase characters equally.</td>
+												</tr>
+												<tr>
+													<td>s</td>
+													<td>Single line. The regex engine treats the string as a whole single line, so the dot metacharacter matches new lines as well.</td>
+												</tr>
+												<tr>
+													<td>x</td>
+													<td>eXtended. Ignore whitespaces.</td>
+												</tr>												
+											</tbody>
+										</table>
+									</div>
+
+									<p>For now on, lets assume we are going to use the g flag to all examples. Just so we don't have to specify that all the time.</p>
+
+
+
+									<h2 id="string_literals">String literals and metacharacters</h2>
+									<p>The most obvious feature of regular expressions is matching strings with one
+or more characters, as shown in the previous topic. Most of regular expressions use normal ASCII characters, which includes letters, digits, punctuation and other symbols on your keyboard like <code class="regex">%#$@!</code> Unicode characters can also be used to match any type of international text. These are called literal characters, or just literals. They are simple characters used to form regular expressions with no special rules.</p>
+									<p>There are some type of characters that has some special meaning in regular expressions. These characters are called metacharacters and they are used to apply rules and patterns in order to create more elaborated expressions. The most common metacharacters are <code class="regex">.?*+{}()[]\</code>.</p>
+									<p><b>Note:</b> Metacharacters are used to apply some feature in the regular expression, which means we cannot put them freely inside the expression and expect them to match that specific character, otherwise the engine is going to throw some errors. In order to do that, we must transform the metacharacter in a literal character simply by using the backslash (<code class="regex">\</code>) character. See the example: </p>
+
+									<h4>Regex:</h4>
+									<p><code class="regex">Google\+</code></p>
+
+									<h4>Matches:</h4>
+									<div class="box">
+										Discover amazing things with <span class="highlighted">Google+</span>. 
+									</div>
+
+									<p>One thing to keep in mind is that we can transform any metacharacter in a literal character just by using backslash, including the backslash itself. So we need to pay attention to this detail when trying to understand or write regular expressions.</p>
+
+
+									<h2 id="digits">Matching digits</h2>
+									<p>When using regular expressions, most of the situations we need to declare patterns as generic as possible. For example, lets say we need to find a number inside a sentense, but we don't know exactly which number that is. If we especified all the possibilities of numbers, our search could become larger, costly and painful to write. </p>
+									<p>So, in order to find a generic number inside a text, we can use a character shorthand <code class="regex">\d</code>. See the example below: </p>
+
+									<h4>Regex:</h4>
+									<p><code class="regex">\d</code></p>
+
+									<h4>Matches:</h4>
+									<div class="box">
+										The A Team has striked <span class="highlighted">8</span> times and the B Team has striked only <span class="highlighted">2</span> times. 
+									</div>
+
+									<p>The regular expression found two occurrences of digits inside the sentense. That's because the character shorthand <code class="regex">\d</code> matches any character from 0 to 9. In other words, it matches all numbers in decimal notation. </p>
+
+									<p>Another way to match digits is using the character class <code class="regex">[0-9]</code>. We are going to talk more about character shorthands and character classes later. The only thing to keep in mind now is that those two expressions does the same thing. The last expression is telling the regex engine to look for characters within the range from 0 to 9.</p>
+
+									<p>One more example, but this time using character class: </p>
+
+									<h4>Regex:</h4>
+									<p><code class="regex">[0-9]</code></p>
+
+									<h4>Matches:</h4>
+									<div class="box">
+										The build process has returned <span class="highlighted">5</span> warnings. 
+									</div>
+
+
+
+
+									<h2 id="words">Matching words</h2>
+									<p>In regular expressions, we can use the character shorthand <code class="regex">\w</code> to match any word character. Word characters are essencially letters, numbers and underline. It is the same as using the character class <code class="regex">[a-zA-Z0-9_]</code>. For example: </p>
+
+									<h4>Regex:</h4>
+									<p><code class="regex">\w</code></p>
+
+									<h4>Matches:</h4>
+									<div class="box">
+										<span class="highlighted">some_email567</span>@<span class="highlighted">gmail</span>.<span class="highlighted">com</span> 
+									</div>
+
+									<p>In the example above, the expression matched all word characters from the sentense. </p>
+									<p><b>Note:</b> Again, we are assuming that the global flag is enabled. So the regex engine found all the occurrences of characters that matches the specified class. If the flag wasn't enabled, it would match only the first character, in this case the <b>s</b> character.</p>
+
+
+									<h2 id="whitespaces">Matching whitespaces</h2>
+									<p>Match whitespaces can be useful in many situations. In order to do that using regular expressions, we could use the character shorthand <code class="regex">\s</code>. It matches all whitespaces, tabs, line feeds and carriage returns in only one expression. We could also write this using character class <code class="regex">[ \f\n\r\t\v]</code>. 
+
+									<ul>
+										<li><b>\f</b> -  Form feed</li>
+										<li><b>\n</b> -  Line feed</li>
+										<li><b>\r</b> -  Carriage Return</li>
+										<li><b>\t</b> -  Tab</li>
+										<li><b>\v</b> -  Vertical tab</li>
+									</ul>
+
+									The example below illustrates an usage: </p>
+
+									<h4>Regex:</h4>
+									<p><code class="regex">\s</code></p>
+
+									<h4>Matches:</h4>
+									<div class="box">
+										Be<span class="highlighted"> </span>or<span class="highlighted"> </span>not<span class="highlighted"> </span>to<span class="highlighted"> </span>be.
+									</div>
+
+									<p>Notice that the regex engine matched all whitespaces between the words, simple as that.</p>
+
+
+									<h2 id="any_character">Matching any character</h2>
+									<p>Sometimes, it comes to us the necessity of matching any kind of character in our regular expressions. We can use the metacharacter <code class="regex">.</code> in order to do that. This metacharacter is widely used, and it essencially stands for any character, except for line ending characters, such as <code class="regex">\n</code> and <code class="regex">\r</code>. See the example: </p>
+
+									<h4>Regex:</h4>
+									<p><code class="regex">b.g</code></p>
+
+									<h4>Matches:</h4>
+									<div class="box">
+										The <span class="highlighted">big</span> <span class="highlighted">bag</span> of bits was <span class="highlighted">bug</span>ged. 
+									</div>
+
+									<p>Above, we defined a regular expression that starts with the character <b>b</b>, then it is followed by the metacharacter <b>.</b>, which matches any character, and then finishes with the character <b>g</b>. In that case, it found three candidates that matched that pattern.</p>
+
+									<p><b>Note:</b> Again, if we want to match a specific metacharacter, first we need to transform it into a string literal scaping it with backslash. See the example: </p>
+
+									<h4>Regex:</h4>
+									<p><code class="regex">\.</code></p>
+
+									<h4>Matches:</h4>
+									<div class="box">
+										Do this<span class="highlighted">.</span> Do that<span class="highlighted">.</span> Never stop<span class="highlighted">.</span>
+									</div>
+
+									<p>In this case, the dot metacharacter was converted to the string literal dot and the regex engine was able to find the occurrences of this specific character inside the sensence.</p>
+
+
+
+									<h2 id="character_classes">Character classes and Non-Caracter classes</h2>
+									<p>As we have seen before, there is a way to define which kind of characters the regular expression must match. These definitions are called character classes. </p>
+									<p>In order to define a character class, we have to open a pair of brackets (<code class="regex">[]</code>) and put the type of characters we desire to match in that part of the regular expression. See the following example: </p>
+
+									<h4>Regex:</h4>
+									<p><code class="regex">gr[ae]y</code></p>
+
+									<h4>Matches:</h4>
+									<div class="box">
+										<span class="highlighted">gray</span><br>
+										<span class="highlighted">grey</span><br>
+										groy<br>
+									</div>
+
+									<p>It is as simple as it looks like. The regex is going to look for <b>gr</b> characters first, and then it is going to match any character that is specified inside the character class, which are <b>a</b> or <b>e</b> and then the last character <b>y</b>. If the regex doesn't find any of the specified characters, it doesn't match, that's what happened with the last word <b>groy</b>.</p>
+
+									<p>For a better understanding, we could assimilate character classes to the logic comparator <b>OR</b>. Using the same example above, the regular expression engine is going to accept either <b>a</b> or <b>e</b>. Otherwise, it returns false, and then it doesn't become a match.</p>
+
+									
+									<p>We could also do the opposite of that using non-character classes. These are used to negate the occurrences of some characters. In order to do that, we put a circumflex accent (<code class="regex">^</code>) before the characters we want to negate. See the example below: </p>
+
+
+									<h4>Regex:</h4>
+									<p><code class="regex">gr[^o]y</code></p>
+
+									<h4>Matches:</h4>
+									<div class="box">
+										<span class="highlighted">gray</span><br>
+										<span class="highlighted">grey</span><br>
+										groy<br>
+									</div>
+
+									<p>It does the same as the other example. The difference is that in the last one we used non-character class, which negates the occurrence of the character <b>o</b> and matches anything else.</p>
+
+									<p>Using character classes, we can define ranges as well. For example, if we want to match only digits between 3 and 7, we could write a regular expression like this: </p>
+
+									<h4>Regex:</h4>
+									<p><code class="regex">[3-7]</code></p>
+
+									<h4>Matches:</h4>
+									<div class="box">
+										Lottery numbers: <span class="highlighted">4</span>, 12, 1<span class="highlighted">5</span>, <span class="highlighted">37</span>, <span class="highlighted">4</span>8, <span class="highlighted">5</span>9.
+									</div>
+
+									<p>Basically, it matches the digits 3, 4, 5, 6 and 7.</p>
+
+
+
+
+									<h2 id="character_shorthands">Character Shorthands</h2>
+									<p>Character shorthands are an easier way to specify some character classes, as we have seen it when matching digits, words and whitespaces. </p>
+
+									<p>Here is the list of most common character shorthands:</p>
+
+									<div class="table-wrapper">
+										<table class="alt">
+											<thead>
+												<tr>
+													<th>Shorthand</th>
+													<th>Description</th>
+													<th>Equals to</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>\a</td>
+													<td>Alert</td>
+													<td>(ASCII 7)</td>
+												</tr>
+												<tr>
+													<td>\b</td>
+													<td>Word boundary</td>
+													<td></td>
+												</tr>
+												<tr>
+													<td>\B</td>
+													<td>Non-Word boundary</td>
+													<td></td>
+												</tr>
+												<tr>
+													<td>[\b]</td>
+													<td>Backspace character</td>
+													<td></td>
+												</tr>
+												<tr>
+													<td>\d</td>
+													<td>Digit character</td>
+													<td>[0-9]</td>
+												</tr>
+												<tr>
+													<td>\D</td>
+													<td>Non-Digit character</td>
+													<td>[^0-9]</td>
+												</tr>
+												<tr>
+													<td>\f</td>
+													<td>Form feed character</td>
+													<td>(ASCII 12)</td>
+												</tr>
+												<tr>
+													<td>\r</td>
+													<td>Carriage retrun</td>
+													<td>(ASCII 13)</td>
+												</tr>
+												<tr>
+													<td>\n</td>
+													<td>New line</td>
+													<td>(ASCII 10)</td>
+												</tr>
+												<tr>
+													<td>\s</td>
+													<td>Whitespace Character</td>
+													<td>[ \r\n\t\f\v]</td>
+												</tr>
+												<tr>
+													<td>\S</td>
+													<td>Non-Whitespace Character</td>
+													<td>[^ \r\n\t\f\v]</td>
+												</tr>
+												<tr>
+													<td>\t</td>
+													<td>Horizontal tab character</td>
+													<td>(ASCII 9)</td>
+												</tr>
+												<tr>
+													<td>\v</td>
+													<td>Vertical tab character</td>
+													<td>(ASCII 11)</td>
+												</tr>
+												<tr>
+													<td>\w</td>
+													<td>Word character</td>
+													<td>[a-zA-Z0-9_]</td>
+												</tr>
+												<tr>
+													<td>\W</td>
+													<td>Non-Word character</td>
+													<td>[^a-zA-Z0-9_]</td>
+												</tr>
+												<tr>
+													<td>\0</td>
+													<td>Nul character</td>
+													<td></td>
+												</tr>
+												<tr>
+													<td>\uxxxx</td>
+													<td>Unicode value for a character. (xxxx is the unicode value of the character)</td>
+													<td></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+
+									<p>As seen in the character classes section, the character shorthands can also be negated. In order to do that, we just use de uppercase version of it. For example, if we want to match anything but digits, we can use the expression below: </p>
+
+									<h4>Regex:</h4>
+									<p><code class="regex">\D</code></p>
+
+									<h4>Matches:</h4>
+									<div class="box">
+										<span class="highlighted">Room Allocations: G</span>4<span class="highlighted"> G</span>9<span class="highlighted"> F</span>2<span class="highlighted"> H</span>1<span class="highlighted"> L</span>0<span class="highlighted"> K</span>7<span class="highlighted"> M</span>9<span class="highlighted">.</span>
+									</div>
+
+									<p>Simple as that, no explanation needed.</p>
+
+
+
+								</section>
+
+
+
+
+						</div>
+					</div>
+
+
+					<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+										<li><a href="../index.html">Home</a></li>
+										<li><a href="../pages/introduction.html">Introduction</a></li>
+										<li>
+											<span class="opener">Pattern Matching</span>
+											<ul>
+												<li><a href="../pages/pattern_matching.html#simple_pattern_matching">Simple Pattern Matching</a></li>
+												<li><a href="../pages/pattern_matching.html#string_literals">String literals and metacharacters</a></li>
+												<li><a href="../pages/pattern_matching.html#digits">Matching digits</a></li>
+												<li><a href="../pages/pattern_matching.html#words">Matching words</a></li>
+												<li><a href="../pages/pattern_matching.html#whitespaces">Matching whitespaces</a></li>
+												<li><a href="../pages/pattern_matching.html#any_character">Matching any character</a></li>
+												<li><a href="../pages/pattern_matching.html#character_classes">Character classes and Non-Caracter classes</a></li>
+												<li><a href="../pages/pattern_matching.html#character_shorthands">Character Shorthands</a></li>
+											</ul>
+										</li>
+										<li>
+											<span class="opener">Alternation, Groups and Backreference</span>
+											<ul>
+												<li><a href="../pages/alternation_groups.html#alternation">Alternation</a></li>
+												<li><a href="../pages/alternation_groups.html#groups">Groups</a></li>
+												<li><a href="../pages/alternation_groups.html#backreference">Backreference</a></li>
+											</ul>
+										</li>
+										<li>
+											<span class="opener">Quantifiers</span>
+											<ul>
+												<li><a href="../pages/quantifiers.html#zero_or_more">Zero or more</a></li>
+												<li><a href="../pages/quantifiers.html#one_or_more">One or more</a></li>
+												<li><a href="../pages/quantifiers.html#zero_or_one">Zero or one</a></li>
+												<li><a href="../pages/quantifiers.html#exact_number">Exact number of times</a></li>
+												<li><a href="../pages/quantifiers.html#range">Range</a></li>
+												<li><a href="../pages/quantifiers.html#at_least_n">At least n times</a></li>
+											</ul>
+										</li>
+										<li>
+											<span class="opener">Boundaries</span>
+											<ul>
+												<li><a href="../pages/boundaries.html#beginning_end_line">The Beginning and End of a Line</a></li>
+												<li><a href="../pages/boundaries.html#word_boundaries">Word and Non-word Boundaries</a></li>
+											</ul>
+										</li>
+										<li>
+											<span class="opener">Lookarounds</span>
+											<ul>
+												<li><a href="../pages/lokarounds.html#positive_lookahead">Positive Lookahead</a></li>
+												<li><a href="../pages/lokarounds.html#negative_lookahead">Negative Lookahead</a></li>
+												<li><a href="../pages/lokarounds.html#positive_lookbehinds">Positive Lookbehinds</a></li>
+												<li><a href="../pages/lokarounds.html#positive_lookbehinds">Negative Lookbehinds</a></li>
+											</ul>
+										</li>
+										<li><a href="../pages/finishings.html">Finishings</a></li>
+									</ul>
+								</nav>
+
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>Get in touch</h2>
+									</header>
+									<ul class="contact">
+										<li class="fa-envelope">maurelio@avenuecode.com</li>
+										<li class="fa-skype">live:marcauresoar</li>
+										<li class="fa-slack">maurelio</li>
+									</ul>
+								</section>
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright">Design by: <a href="https://html5up.net">HTML5 UP</a>.</p>
+								</footer>
+
+						</div>
+					</div>
+
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="../assets/js/jquery.min.js"></script>
+			<script src="../assets/js/skel.min.js"></script>
+			<script src="../assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="../assets/js/main.js"></script>
+
+	</body>
+</html>

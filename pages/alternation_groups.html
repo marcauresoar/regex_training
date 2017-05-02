@@ -1,0 +1,201 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Generic - Editorial by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a class="logo"><strong>Alternation, Groups and Backreference</strong></a>
+								</header>
+
+								<section>
+
+									<h2 id="alternation">Alternation</h2>
+									<p>Like the word itself suggests, alternation gives us a choice of alternate patterns to match. Lets say we want to find the occurrence of some specific words inside a sentense. The example below shows us how to use alternation: </p>
+
+									<h4>Regex:</h4>
+									<p><code class="regex">dog|cat</code></p>
+
+									<h4>Matches:</h4>
+									<div class="box">
+										The <span class="highlighted">dog</span> is a mammal.<br>
+										The fish is a mammal.<br>
+										The <span class="highlighted">cat</span> is a mammal.
+									</div>
+
+									<p>In the example above, we wanted to find occurrences either of <b>dog</b> or <b>cat</b>, so we used the pipe character (<code class="regex">|</code>) to tell the regex engine to alternet between those two terms.</p>
+									<p>We can also assimilate alternation to the logic comparator <b>OR</b>, but this time in a feature that is proper for that kind of operation.</p>
+									<p>A good practice is to use alternation inside a group, just so it doesn't mix with the other characters in our expression. See the example below: </p>
+
+									<h4>Regex:</h4>
+									<p><code class="regex">(t|T)h(e|eir)</code></p>
+
+									<h4>Matches:</h4>
+									<div class="box">
+										<span class="highlighted">the</span><br>
+										<span class="highlighted">The</span><br>
+										<span class="highlighted">their</span><br>
+										<span class="highlighted">Their</span><br>
+									</div>
+
+									<p>In this example, we created two alternation groups. The first one captures both uppercase and lowercase character <b>t</b>. The second one captures an <b>e</b> or <b>eir</b> sequence of characters. So, it matched all the cases above. We are going to see how to use groups in the next section.</p>
+
+
+									<h2 id="groups">Groups</h2>
+									<p>Groups are widely used in regular expressions because of its practicality in gathering terms and organizing them. It also brings the benefit of a better reading and understanding of what is happening in every part of our regular expressions.</p>
+									<p>In order to create a group, we must open a pair of parenthesis (<code class="regex">()</code>) and put our terms inside of it. See the example below: </p>
+
+									<h4>Regex:</h4>
+									<p><code class="regex">([A-D]): (\d\d\d)</code></p>
+
+									<h4>Matches:</h4>
+									<div class="box">
+										Team <span class="highlighted"><b>A</b>: <b>010</b></span> points.<br>
+										Team <span class="highlighted"><b>B</b>: <b>018</b></span> points.<br>
+										Team <span class="highlighted"><b>C</b>: <b>031</b></span> points.<br>
+										Team <span class="highlighted"><b>D</b>: <b>022</b></span> points.<br>
+									</div>
+
+									<p>In this example, we created two groups. The first has a character class that matches letters from <b>A</b> to <b>D</b>. The second group matches three digits. Between them there are some other characters such as a whitespace.</p>
+									<p>These groups can be captured by the programming language regex library in order to be used inside the code for many purposes. This is a very useful feature, since you can define the groups of patterns you want your regex to capture.</p>
+									<p>In the example above, we could classify the first group as the "Team Name" and the second one as "Score". Normally, the <b>match</b> function of the programming languages returns an array with all these matches separately, so we can easily work with them inside our application.</p>
+
+
+									<h2 id="backreference">Backreference</h2>
+									<p>There is another feature that allows us to reuse a captured group inside the own regular expression, so we don't have to write the whole pattern of the group multiple times. It is called backreference. In order to use that, we should use the backslash character (<code class="regex">\</code>) followed by a number that determinates the group index. It is easy to notice this in the example below:</p>
+
+									<h4>Regex:</h4>
+									<p><code class="regex">"(be) or not to \1"</code></p>
+
+									<h4>Matches:</h4>
+									<div class="box">
+										<span class="highlighted">"<b>be</b> or not to be"</span>
+									</div>
+
+									<p>In this example, we captured a group with the word <b>be</b>, and later on we reused that by using a backreference. Since we created a group, it automatically receives a index that starts by 1, which means this is the first group captured. If we created more groups, they would receive indexes as well according to the order they appear in the expression. </p>
+
+
+								</section>
+
+
+
+						</div>
+					</div>
+
+				
+
+				<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+										<li><a href="../index.html">Home</a></li>
+										<li><a href="../pages/introduction.html">Introduction</a></li>
+										<li>
+											<span class="opener">Pattern Matching</span>
+											<ul>
+												<li><a href="../pages/pattern_matching.html#simple_pattern_matching">Simple Pattern Matching</a></li>
+												<li><a href="../pages/pattern_matching.html#string_literals">String literals and metacharacters</a></li>
+												<li><a href="../pages/pattern_matching.html#digits">Matching digits</a></li>
+												<li><a href="../pages/pattern_matching.html#words">Matching words</a></li>
+												<li><a href="../pages/pattern_matching.html#whitespaces">Matching whitespaces</a></li>
+												<li><a href="../pages/pattern_matching.html#any_character">Matching any character</a></li>
+												<li><a href="../pages/pattern_matching.html#character_classes">Character classes and Non-Caracter classes</a></li>
+												<li><a href="../pages/pattern_matching.html#character_shorthands">Character Shorthands</a></li>
+											</ul>
+										</li>
+										<li>
+											<span class="opener">Alternation, Groups and Backreference</span>
+											<ul>
+												<li><a href="../pages/alternation_groups.html#alternation">Alternation</a></li>
+												<li><a href="../pages/alternation_groups.html#groups">Groups</a></li>
+												<li><a href="../pages/alternation_groups.html#backreference">Backreference</a></li>
+											</ul>
+										</li>
+										<li>
+											<span class="opener">Quantifiers</span>
+											<ul>
+												<li><a href="../pages/quantifiers.html#zero_or_more">Zero or more</a></li>
+												<li><a href="../pages/quantifiers.html#one_or_more">One or more</a></li>
+												<li><a href="../pages/quantifiers.html#zero_or_one">Zero or one</a></li>
+												<li><a href="../pages/quantifiers.html#exact_number">Exact number of times</a></li>
+												<li><a href="../pages/quantifiers.html#range">Range</a></li>
+												<li><a href="../pages/quantifiers.html#at_least_n">At least n times</a></li>
+											</ul>
+										</li>
+										<li>
+											<span class="opener">Boundaries</span>
+											<ul>
+												<li><a href="../pages/boundaries.html#beginning_end_line">The Beginning and End of a Line</a></li>
+												<li><a href="../pages/boundaries.html#word_boundaries">Word and Non-word Boundaries</a></li>
+											</ul>
+										</li>
+										<li>
+											<span class="opener">Lookarounds</span>
+											<ul>
+												<li><a href="../pages/lokarounds.html#positive_lookahead">Positive Lookahead</a></li>
+												<li><a href="../pages/lokarounds.html#negative_lookahead">Negative Lookahead</a></li>
+												<li><a href="../pages/lokarounds.html#positive_lookbehinds">Positive Lookbehinds</a></li>
+												<li><a href="../pages/lokarounds.html#positive_lookbehinds">Negative Lookbehinds</a></li>
+											</ul>
+										</li>
+										<li><a href="../pages/finishings.html">Finishings</a></li>
+									</ul>
+								</nav>
+
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>Get in touch</h2>
+									</header>
+									<ul class="contact">
+										<li class="fa-envelope">maurelio@avenuecode.com</li>
+										<li class="fa-skype">live:marcauresoar</li>
+										<li class="fa-slack">maurelio</li>
+									</ul>
+								</section>
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright">Design by: <a href="https://html5up.net">HTML5 UP</a>.</p>
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="../assets/js/jquery.min.js"></script>
+			<script src="../assets/js/skel.min.js"></script>
+			<script src="../assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="../assets/js/main.js"></script>
+
+	</body>
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Generic - Editorial by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a class="logo"><strong>Quantifiers</strong></a>
+								</header>
+
+								<section>
+
+									<p>There is a moment in our regular expressions that we need to determinate the amount of times a character or a group should appear. For that, the regex engines offer us the feature of quantifiers. In the next sections we are going to see the types of quantifiers that we can use.</p>
+
+									<h2 id="zero_or_more">Zero or more</h2>
+									<p>This quantifier we use when we have a character in our regular expression that could appear zero, one or multiple times. In order to express that, we need to put a asterisk symbol (<code class="regex">*</code>) right after the character or the group we want the rule to be applied to. For example: </p>
+
+									<h4>Regex:</h4>
+									<p><code class="regex">go*d</code></p>
+
+									<h4>Matches:</h4>
+									<div class="box">
+										<span class="highlighted">gd</span><br>
+										<span class="highlighted">god</span><br>
+										<span class="highlighted">good</span><br>
+										<span class="highlighted">goooood</span>
+									</div>
+
+									<p>In the previous example, we applied the zero-or-more quantifier to the character <b>o</b>. See that all cases were matched because every one of them fits the rule.</p>
+
+
+									<h2 id="one_or_more">One or more</h2>
+									<p>This quantifier, like the name suggests, it matches one or multiple occurrences of a determinated character or group. In order to use that quantifier, we need to put a plus sign (<code class="regex">+</code>) right after the character or the group we want the rule to be applied to. See the example below: </p>
+
+									<h4>Regex:</h4>
+									<p><code class="regex">ba+d</code></p>
+
+									<h4>Matches:</h4>
+									<div class="box">
+										bd<br>
+										<span class="highlighted">bad</span><br>
+										<span class="highlighted">baad</span><br>
+										<span class="highlighted">baaaaad</span>
+									</div>
+
+									<p>In this example, the first case didn't match because there wasn't at least 1 character <b>a</b> between <b>b</b> and <b>d</b>. The others matched normally.</p>
+
+
+									<h2 id="zero_or_one">Zero or one</h2>
+									<p>This quantifier is used when we want to specify that a character is not mandatory. There could and there could not be occurrences of that character. For that, we use the question mark (<code class="regex">?</code>) the same way we did with the other quantifiers. Example: </p>
+
+									<h4>Regex:</h4>
+									<p><code class="regex">ab?c</code></p>
+
+									<h4>Matches:</h4>
+									<div class="box">
+										<span class="highlighted">ac</span><br>
+										<span class="highlighted">abc</span><br>
+										abbbc
+									</div>
+
+									<p>This example is very simple. The only two cases that could have matched were the first ones. The last one didn't matched because there was more than one <b>b</b>, then the quantifier doesn't allow that amount.</p>
+
+
+
+
+									<h2 id="exact_number">Exact number of times</h2>
+									<p>We can also specify a fixed number of times that we want a character or group to appear. In order to do that, we need to use the syntax (<code class="regex">{n}</code>) right after the character or group we want to repeat, where <b>n</b> is the number of times we want that expression to appear. See the example below: </p>
+
+									<h4>Regex:</h4>
+									<p><code class="regex">\d{3}\.\d{3}\.\d{3}-\d{2}</code></p>
+
+									<h4>Matches:</h4>
+									<div class="box">
+										<span class="highlighted">345.723.786-14</span><br>
+										34.723.86-14<br>
+										.723.736-1435
+									</div>
+
+									<p>In the example above, we created a simple regular expression to match valid brazilian CPFs. Notice that we determinated the amount of digits that should appear in each part of the expression.</p>
+
+
+
+
+									<h2 id="range">Range</h2>
+									<p>Another useful feature in quantifiers is the possibility to specify ranges. In other words, determinate the minimum and maximum amount of times a character or group should appear. To do that, we need to use the syntax (<code class="regex">{n,m}</code>) right after the character or group we want to repeat, where <b>n</b> is the minimum amount and <b>m</b> is the maximum amount of times the character or group should appear. Example: </p>
+
+
+									<h4>Regex:</h4>
+									<p><code class="regex">\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}</code></p>
+
+									<h4>Matches:</h4>
+									<div class="box">
+										<span class="highlighted">44.22.666.23</span><br>
+										1.6.9000.100<br>
+										<span class="highlighted">225.225.225.0</span><br>
+										.1.49.1111
+									</div>
+
+									<p>This example is straightforward, we set a rule to match ip addresses. They should have at least 1 digit and no more than 3 in each layer. The second and fourth case didn't match because they have more than 3 digits in one layer, and the last one doesn't have a digit at the beginning.</p>
+
+
+
+
+
+									<h2 id="at_least_n">At least n times</h2>
+									<p>This quantifier is just like the one-or-more, the only difference is that in this one we can specify the minimum amount. In order to do that, we use the same sintax of range, but we do not put a <b>m</b> value. So the syntax sould be like (<code class="regex">{n,}</code>). See the example: </p>
+
+
+
+									<h4>Regex:</h4>
+									<p><code class="regex">say( hey){2,} to me</code></p>
+
+									<h4>Matches:</h4>
+									<div class="box">
+										say hey to me<br>
+										<span class="highlighted">say hey hey to me</span><br>
+										<span class="highlighted">say hey hey hey to me</span><br>
+										<span class="highlighted">say hey hey hey hey hey to me</span>
+									</div>
+
+									<p>This time we applied the quantifier to a group. Basically, in the example above we want the word <b>hey</b> to appear at least two times, and there is a unlimited time that it can appear after it.</p>
+
+
+
+								</section>
+
+
+
+						</div>
+					</div>
+
+
+
+					<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+										<li><a href="../index.html">Home</a></li>
+										<li><a href="../pages/introduction.html">Introduction</a></li>
+										<li>
+											<span class="opener">Pattern Matching</span>
+											<ul>
+												<li><a href="../pages/pattern_matching.html#simple_pattern_matching">Simple Pattern Matching</a></li>
+												<li><a href="../pages/pattern_matching.html#string_literals">String literals and metacharacters</a></li>
+												<li><a href="../pages/pattern_matching.html#digits">Matching digits</a></li>
+												<li><a href="../pages/pattern_matching.html#words">Matching words</a></li>
+												<li><a href="../pages/pattern_matching.html#whitespaces">Matching whitespaces</a></li>
+												<li><a href="../pages/pattern_matching.html#any_character">Matching any character</a></li>
+												<li><a href="../pages/pattern_matching.html#character_classes">Character classes and Non-Caracter classes</a></li>
+												<li><a href="../pages/pattern_matching.html#character_shorthands">Character Shorthands</a></li>
+											</ul>
+										</li>
+										<li>
+											<span class="opener">Alternation, Groups and Backreference</span>
+											<ul>
+												<li><a href="../pages/alternation_groups.html#alternation">Alternation</a></li>
+												<li><a href="../pages/alternation_groups.html#groups">Groups</a></li>
+												<li><a href="../pages/alternation_groups.html#backreference">Backreference</a></li>
+											</ul>
+										</li>
+										<li>
+											<span class="opener">Quantifiers</span>
+											<ul>
+												<li><a href="../pages/quantifiers.html#zero_or_more">Zero or more</a></li>
+												<li><a href="../pages/quantifiers.html#one_or_more">One or more</a></li>
+												<li><a href="../pages/quantifiers.html#zero_or_one">Zero or one</a></li>
+												<li><a href="../pages/quantifiers.html#exact_number">Exact number of times</a></li>
+												<li><a href="../pages/quantifiers.html#range">Range</a></li>
+												<li><a href="../pages/quantifiers.html#at_least_n">At least n times</a></li>
+											</ul>
+										</li>
+										<li>
+											<span class="opener">Boundaries</span>
+											<ul>
+												<li><a href="../pages/boundaries.html#beginning_end_line">The Beginning and End of a Line</a></li>
+												<li><a href="../pages/boundaries.html#word_boundaries">Word and Non-word Boundaries</a></li>
+											</ul>
+										</li>
+										<li>
+											<span class="opener">Lookarounds</span>
+											<ul>
+												<li><a href="../pages/lokarounds.html#positive_lookahead">Positive Lookahead</a></li>
+												<li><a href="../pages/lokarounds.html#negative_lookahead">Negative Lookahead</a></li>
+												<li><a href="../pages/lokarounds.html#positive_lookbehinds">Positive Lookbehinds</a></li>
+												<li><a href="../pages/lokarounds.html#positive_lookbehinds">Negative Lookbehinds</a></li>
+											</ul>
+										</li>
+										<li><a href="../pages/finishings.html">Finishings</a></li>
+									</ul>
+								</nav>
+
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>Get in touch</h2>
+									</header>
+									<ul class="contact">
+										<li class="fa-envelope">maurelio@avenuecode.com</li>
+										<li class="fa-skype">live:marcauresoar</li>
+										<li class="fa-slack">maurelio</li>
+									</ul>
+								</section>
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright">Design by: <a href="https://html5up.net">HTML5 UP</a>.</p>
+								</footer>
+
+						</div>
+					</div>
+
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="../assets/js/jquery.min.js"></script>
+			<script src="../assets/js/skel.min.js"></script>
+			<script src="../assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="../assets/js/main.js"></script>
+
+	</body>
+</html>
