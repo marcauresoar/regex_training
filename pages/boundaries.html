@@ -1,0 +1,210 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+    <title>Regex Training - Boundaries</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+    <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+</head>
+<body>
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+    <!-- Main -->
+    <div id="main">
+        <div class="inner">
+
+            <!-- Header -->
+            <header id="header">
+                <a class="logo"><strong>Boundaries</strong></a>
+            </header>
+
+            <section>
+                <p>Boundaries are some ways to determinate the surroundings of our expressions and in which position they are inside our text. They are also known as anchors, and they do not consume characters.</p>
+
+                <h2 id="beginning_end_line">The Beginning and End of a Line</h2>
+                <p>Sometimes, specially working with multiline files, we want to certificate that our expression starts exactly at the beginning of a line, or fits properly at the end of a line, or even both. There are two metacharacters responsible for this.</p>
+                <p>The first one is the circumflex accent (<code class="regex">^</code>), when we put it at the beginning of our regular expression we are basically saying that this is a beginning of a line.</p>
+                <p><b>Attention:</b> In order to use this boundary, we need to use the <code class="regex">m</code> flag. This flag treats our target as a multiline text, so it is possible to work with line anchors.</p>
+                <p>The other anchor is the dollar sign (<code class="regex">$</code>). We put it at the end of our regular expression in order to guarantee that the line ends at that point. Check out the example below:</p>
+
+                <h4>Regex:</h4>
+                <p><code class="regex">^Sometimes.+tears$</code></p>
+
+                <h4>Matches:</h4>
+                <div class="box">
+                    He wrought at one great work for years<br>
+                    The world passed by with lofty look<br>
+                    <span class="highlighted">Sometimes his eyes were dashed with tears</span><br>
+                    Sometimes his lips with laughter shook.
+                </div>
+
+                <p>In the example above, we created a regular expression that matches all lines that starts with the word <b>Sometimes</b> and ends with the word <b>tears</b>, with some characters between them. Pretty simple.</p>
+                <p>We can also use them separately, it is not necessary to have both of them in the same expression. Using the same poem of the previous example, we can create this:</p>
+
+                <h4>Regex:</h4>
+                <p><code class="regex">^Sometimes.+</code></p>
+
+                <h4>Matches:</h4>
+                <div class="box">
+                    He wrought at one great work for years<br>
+                    The world passed by with lofty look<br>
+                    <span class="highlighted">Sometimes his eyes were dashed with tears</span><br>
+                    <span class="highlighted">Sometimes his lips with laughter shook.</span>
+                </div>
+
+                <p>This time, we only used the anchor at the beginning, so it matched only the lines that starts with the word <b>Sometimes</b>.</p>
+
+
+                <h2 id="word_boundaries">Word and Non-word Boundaries</h2>
+                <p>The word boundary is useful when we what to specify that a expression is a word, but without consuming characters. They determinate if the characters surrounding our expression are word or non-word characters.</p>
+                <p>To use this boundary, we use the character shorthand <code class="regex">\b</code> at the beginning or the end of our expression, or both. For a better understanding, there are three examples below:</p>
+
+                <h4>Regex:</h4>
+                <p><code class="regex">and</code></p>
+
+                <h4>Matches:</h4>
+                <div class="box">
+                    Or I guess it is the h<span class="highlighted">and</span>kerchief of the Lord<br>
+                    A scented gift <span class="highlighted">and</span> remembrancer designedly dropped...
+                </div>
+
+                This first example shows all occurrences of the word <b>and</b> inside our text.
+
+                <h4>Regex:</h4>
+                <p><code class="regex">\band\b</code></p>
+
+                <h4>Matches:</h4>
+                <div class="box">
+                    Or I guess it is the handkerchief of the Lord<br>
+                    A scented gift <span class="highlighted">and</span> remembrancer designedly dropped...
+                </div>
+
+                This second example specify that <b>and</b> is a whole word, and its surroundings are non-word characters.
+
+                <h4>Regex:</h4>
+                <p><code class="regex">\Band\B</code></p>
+
+                <h4>Matches:</h4>
+                <div class="box">
+                    Or I guess it is the h<span class="highlighted">and</span>kerchief of the Lord<br>
+                    A scented gift and remembrancer designedly dropped...
+                </div>
+
+                The third one is the opposite of the second, it matches exactly the <b>and</b> surrounded by word characters.
+
+                <p><b>Tip:</b> For a much better understanding, we can assimilate this boundary to the behavior of the commands <code class="regex">Ctrl</code> + <code class="regex">&#8592;</code> and <code class="regex">Ctrl</code> + <code class="regex">&#8594;</code>, they stop exactly where the word boundaries are.</p>
+
+            </section>
+
+
+
+        </div>
+    </div>
+
+
+
+    <!-- Sidebar -->
+    <div id="sidebar">
+        <div class="inner">
+
+            <!-- Menu -->
+            <nav id="menu">
+                <header class="major">
+                    <h2>Menu</h2>
+                </header>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../pages/introduction.html">Introduction</a></li>
+                    <li>
+                        <span class="opener">Pattern Matching</span>
+                        <ul>
+                            <li><a href="../pages/pattern_matching.html#simple_pattern_matching">Simple Pattern Matching</a></li>
+                            <li><a href="../pages/pattern_matching.html#string_literals">String literals and metacharacters</a></li>
+                            <li><a href="../pages/pattern_matching.html#digits">Matching digits</a></li>
+                            <li><a href="../pages/pattern_matching.html#words">Matching words</a></li>
+                            <li><a href="../pages/pattern_matching.html#whitespaces">Matching whitespaces</a></li>
+                            <li><a href="../pages/pattern_matching.html#any_character">Matching any character</a></li>
+                            <li><a href="../pages/pattern_matching.html#character_classes">Character classes and Non-Caracter classes</a></li>
+                            <li><a href="../pages/pattern_matching.html#character_shorthands">Character Shorthands</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span class="opener">Alternation, Groups and Backreference</span>
+                        <ul>
+                            <li><a href="../pages/alternation_groups.html#alternation">Alternation</a></li>
+                            <li><a href="../pages/alternation_groups.html#groups">Groups</a></li>
+                            <li><a href="../pages/alternation_groups.html#backreference">Backreference</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span class="opener">Quantifiers</span>
+                        <ul>
+                            <li><a href="../pages/quantifiers.html#zero_or_more">Zero or more</a></li>
+                            <li><a href="../pages/quantifiers.html#one_or_more">One or more</a></li>
+                            <li><a href="../pages/quantifiers.html#zero_or_one">Zero or one</a></li>
+                            <li><a href="../pages/quantifiers.html#exact_number">Exact number of times</a></li>
+                            <li><a href="../pages/quantifiers.html#range">Range</a></li>
+                            <li><a href="../pages/quantifiers.html#at_least_n">At least n times</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span class="opener">Boundaries</span>
+                        <ul>
+                            <li><a href="../pages/boundaries.html#beginning_end_line">The Beginning and End of a Line</a></li>
+                            <li><a href="../pages/boundaries.html#word_boundaries">Word and Non-word Boundaries</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span class="opener">Lookarounds</span>
+                        <ul>
+                            <li><a href="../pages/lokarounds.html#positive_lookahead">Positive Lookahead</a></li>
+                            <li><a href="../pages/lokarounds.html#negative_lookahead">Negative Lookahead</a></li>
+                            <li><a href="../pages/lokarounds.html#positive_lookbehinds">Positive Lookbehinds</a></li>
+                            <li><a href="../pages/lokarounds.html#positive_lookbehinds">Negative Lookbehinds</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../pages/finishings.html">Finishings</a></li>
+                </ul>
+            </nav>
+
+            <!-- Section -->
+            <section>
+                <header class="major">
+                    <h2>Get in touch</h2>
+                </header>
+                <ul class="contact">
+                    <li class="fa-envelope">maurelio@avenuecode.com</li>
+                    <li class="fa-skype">live:marcauresoar</li>
+                    <li class="fa-slack">maurelio</li>
+                </ul>
+            </section>
+
+            <!-- Footer -->
+            <footer id="footer">
+                <p class="copyright">Design by: <a href="https://html5up.net">HTML5 UP</a>.</p>
+            </footer>
+
+        </div>
+    </div>
+
+</div>
+
+<!-- Scripts -->
+<script src="../assets/js/jquery.min.js"></script>
+<script src="../assets/js/skel.min.js"></script>
+<script src="../assets/js/util.js"></script>
+<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+<script src="../assets/js/main.js"></script>
+
+</body>
+</html>
