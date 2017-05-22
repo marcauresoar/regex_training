@@ -6,7 +6,7 @@
 -->
 <html>
 <head>
-    <title>Regex Training - Lookarounds</title>
+    <title>Regex Training - References</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -25,76 +25,13 @@
 
             <!-- Header -->
             <header id="header">
-                <a class="logo"><strong>Lookarounds</strong></a>
+                <a class="logo"><strong>References</strong></a>
             </header>
 
             <section>
-                <p>Lookarounds are essentially non-capturing groups used to match patterns based on what they have either behind or in front of an expression. There are four types of lookarounds, and they are going to be listed below.</p>
-
-                <h2 id="positive_lookahead">Positive Lookahead</h2>
-                <p>This is used to match an expression that is followed by some specific term. See the example below: </p>
-
-                <h4>Regex:</h4>
-                <p><code class="regex">after(?= the)</code></p>
-
-                <h4>Matches:</h4>
-                <div class="box">
-                    The memo was written immediately <span class="highlighted">after</span> the meeting, a day after Michael Flynn resigned, according to US media.
-                </div>
-
-                <p>In this example, the regular expression is looking for the word <b>after</b> that is followed by the word <b>the</b>, without consuming the word <b>the</b> itself.</p>
-                <p>This feature is very useful on scenarios where we need to match an expression that we don't know what it is, but we know exactly what surrounds it.</p>
-
-                <h2 id="negative_lookahead">Negative Lookahead</h2>
-                <p>This feature is just like the previous one, except that negative lookaheads matches expressions that are NOT followed by a specific term. Check it out: </p>
-
-                <h4>Regex:</h4>
-                <p><code class="regex">after(?! the)</code></p>
-
-                <h4>Matches:</h4>
-                <div class="box">
-                    The memo was written immediately after the meeting, a day <span class="highlighted">after</span> Michael Flynn resigned, according to US media.
-                </div>
-
-                <p>We used the same example of the previous section. Since now we are negating the expression <b>the</b>, the regex engine matches the <b>after</b> word followed by <b>Michael</b> instead.</p>
-
-
-                <h2 id="positive_lookbehinds">Positive Lookbehinds</h2>
-                <p>This is used to match an expression that follows a specific term. See the example below: </p>
-
-                <h4>Regex:</h4>
-                <p><code class="regex">(?<=be )\w+</code></p>
-
-                <h4>Matches:</h4>
-                <div class="box">
-                    I used to be <span class="highlighted">brave</span>.<br>
-                    I used to be <span class="highlighted">strong</span>.<br>
-                    I used to be <span class="highlighted">fearless</span>.
-                </div>
-
-                <p>In this example, we wanted to capture the word characters after the word <b>be</b>. Simple as that.</p>
-
-
-                <h2 id="negative_lookbehinds">Negative Lookbehinds</h2>
-                <p>And again, like the previous feature, this one does the opposite. It matches an expression that doesn't follow an specific term. See the example: </p>
-
-                <h4>Regex:</h4>
-                <p><code class="regex">(?<&#33;int )value\w</code></p>
-
-                <h4>Matches:</h4>
-                <div class="box">
-                    int valueA = 3;<br>
-                    int valueB = 5;<br>
-                    double <span class="highlighted">valueC</span> = 2.2;<br>
-                    String <span class="highlighted">valueD</span> = "Something";
-                </div>
-
-                <p>This example captures all variable names that start with the word <b>value</b>, followed by a word character, and aren't of <b>int</b> type.</p>
 
 
             </section>
-
-
 
         </div>
     </div>
