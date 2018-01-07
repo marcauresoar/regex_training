@@ -1,6 +1,8 @@
 # Regex Training
 
-This is a training material for learning the basics of regular expressions.
+This is a training material for learning the basics of regular expressions. This material was created in order to offer a training about regular expressions for my coworkers.
+
+Live example: [Regex Training Live Example](https://marcauresoar.github.io/regex_training "Regex Training Live Example") 
 
 # Structure
 
@@ -35,6 +37,10 @@ This training material is divided into the topics below:
     * Negative lookahead
     * Positive lookbehinds
     * Negative lookbehinds
+
+## Running the project
+
+The project is composed of static html pages, so it's only required to open the index.html file in a browser.
 
 ## Credits for the page layout
 
